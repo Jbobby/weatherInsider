@@ -1,26 +1,76 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import Navigation from './components/navigation/navigation.component';
+import Output from './components/output/output.component';
+import architecture from '../src/architecture.jpg';
+import Searchbox from './components/searchbox/searchbox.component';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state={
+      input: '',
+      city: '',
+      searchField: '',
+      temperature: '',
+      humidity: '',
+      description: '',
+      icon:'',
+    }
+  }
+
+
+    onInputChange = (event) => {
+      this.setState({input: event.target.value});
+    }
+
+    onButtonSubmit = () => {
+      this.setState({city: this.state.input})
+    }
+
+    
+componentDidMount() {
+  fetch('http://api.openweathermap.org/data/2.5/weather?q=Lagos&APPID=155789547c677eeabf2690f539468ce0')
+  .then(res => res.json())
+  .then(data =>
+     this.setState({
+         temperature: data.main.temp,
+         humidity: data.main.humidity,
+         description: data.weather.description,
+         icon: data.weather.icon,
+     })
+  )
 }
 
+
+  render(){
+    return(
+          <div className="app">
+              <Navigation />
+
+                  <div className="container" style={{backgroundImage: `url(${architecture})`, paddingTop: 120}}>
+
+                      <h1 className="tc">WEATHER INSIDER</h1>
+                        <p>Get accurate weather information of any city by filling the form below.</p>
+                          <Searchbox onSubmit={this.onButtonSubmit} inputChange={this.onInputChange} />
+
+                          <Output 
+                            temp={this.state.temperature} 
+                            humidity={this.state.humidity} 
+                            description={this.state.description} 
+                            icon={this.state.icon}
+                            searchInput={this.state.searchField}  
+                          />
+                        
+                  </div>
+          
+          </div>
+    )
+  }
+}
+
+
 export default App;
+
+
