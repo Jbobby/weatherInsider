@@ -29,7 +29,7 @@ class App extends Component {
       this.setState({city: this.state.input})
     }
 
-    
+
 componentDidMount() {
   fetch('http://api.openweathermap.org/data/2.5/weather?q=Lagos&APPID=155789547c677eeabf2690f539468ce0')
   .then(res => res.json())
@@ -37,7 +37,7 @@ componentDidMount() {
      this.setState({
          temperature: data.main.temp,
          humidity: data.main.humidity,
-         description: data.weather.description,
+         description: data.weather.main,
          icon: data.weather.icon,
      })
   )

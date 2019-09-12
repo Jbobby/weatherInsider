@@ -8,15 +8,17 @@ const Output = ({temp, humidity, description, icon}) => {
     return(
         <div className='section'>
             <div className="divstyle">
-                <p className="detailsTitle"> <span>T</span>empera<span>t</span>ure: 
+                <h4 className="detailsTitle"> <span>T</span>empera<span>t</span>ure 
                     <p>{temp}°C</p>
-                </p>
-                <p className="detailsTitle"> <b>Humidi<span>t</span>y</b>: 
+                </h4>
+                <hr />
+                <h4 className="detailsTitle"> Humidi<span>t</span>y
                     <p>{humidity}%</p> 
-                </p>
-                <p className="detailsTitle"> Condi<span>t</span>ion: 
-                    {description} 
-                </p>
+                </h4>
+                <hr />
+                <h4 className="detailsTitle"> Condi<span>t</span>ion
+                    <p>{description} hi</p> 
+                </h4>
                 <p className="detailsTitle"> {icon} </p>
             </div>
         </div>
