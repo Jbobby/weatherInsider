@@ -4,7 +4,7 @@ import Navigation from './components/navigation/navigation.component';
 import Output from './components/output/output.component';
 import architecture from '../src/architecture.jpg';
 import Searchbox from './components/searchbox/searchbox.component';
-import HowTo from './components/howto/howto.component'
+import Section from './components/section/section.component';
 
 
 class App extends Component {
@@ -17,7 +17,7 @@ class App extends Component {
       temperature: '',
       humidity: '',
       description: '',
-      iconUrl:'',
+      icon:'',
     }
   }
 
@@ -54,19 +54,19 @@ componentDidMount() {
 
                       <h1 className="tc">WEATHER INSIDER</h1>
                         <p>Get accurate weather information of any city by filling the form below.</p>
-                          <Searchbox onSubmit={this.onButtonSubmit} inputChange={this.onInputChange} />
+              <Searchbox onSubmit={this.onButtonSubmit} inputChange={this.onInputChange} />
 
-                          <Output 
-                            temp={this.state.temperature} 
-                            humidity={this.state.humidity} 
-                            description={this.state.description} 
-                            icon={this.state.icon}
-                            searchInput={this.state.searchField}  
-                            city={this.state.city}
-                          />
+              <Output 
+                temp={this.state.temperature} 
+                humidity={this.state.humidity} 
+                description={this.state.description} 
+                icon={this.state.iconUrl}
+                searchInput={this.state.searchField}  
+                city={this.state.city}
+              />
                         
                   </div>
-                  <HowTo />
+              <Section />
           
           </div>
     )

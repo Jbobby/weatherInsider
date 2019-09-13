@@ -1,21 +1,21 @@
 import React from 'react';
-import './howto.style.scss'
-import continental from '../howto/continental.jpg';
+import './section.style.scss'
+import continental from '../section/continental.jpg';
 import Particles from 'react-particles-js';
 
 const particlesOptions = {
     "particles": {
         "number": {
-          "value": 70,
+          "value": 40,
           "density": {
             "enable": true,
-            "value_area": 400
+            "value_area": 600
           }
         }    
     }
 }
 
-const HowTo = () => {
+const Section = () => {
     return(
         <div className="howtoDetails">
         <Particles className="particles"
@@ -31,4 +31,4 @@ const HowTo = () => {
     )
 }
 
-export default HowTo;
+export default Section;
