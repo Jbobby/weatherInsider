@@ -34,8 +34,6 @@ componentDidMount() {
   fetch('http://api.openweathermap.org/data/2.5/weather?q=Lagos&APPID=155789547c677eeabf2690f539468ce0')
   .then(res => res.json())
   .then(data =>
-    {
-      console.log(data)
      this.setState({
          temperature: data.main.temp,
          humidity: data.main.humidity,
@@ -43,7 +41,6 @@ componentDidMount() {
          icon: data.weather[0].icon,
          city: data.name,
      })
-    }
   )
 }
 

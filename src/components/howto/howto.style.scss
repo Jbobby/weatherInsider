@@ -1,6 +1,6 @@
 .howtoDetails{
-    min-height: 400px;
     background-color: black;
+    position: relative;
 }
 
 .d_container{
@@ -8,4 +8,40 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+}
+.firstbox{
+    padding: 20px;
+    margin: 80px;
+    margin-top: 100px;
+    color: white;
+    font-size: 1.5em;
+    margin-right: 20px;
+}
+
+.secondbox{
+    margin:80px;
+    margin-left: 0;
+    text-align: center;
+}
+
+img{
+    border: 10px solid #333333;
+    border-radius: 138px;
+}
+
+#link{
+    color: white;
+    font-weight: 100;
+    font-size: 0.7em;
+}
+
+a{
+    text-decoration: none;
+}
+
+.particles{
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: -1;
 }

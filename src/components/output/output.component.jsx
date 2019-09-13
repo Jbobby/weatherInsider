@@ -11,8 +11,8 @@ const Output = ({temp, humidity, description, icon, city}) => {
     return(
         <div className='section'>
             <div className="divstyle">
-                <div className="bodoni black">{city}</div>
-                <div className="detailsTitle"><img src="http://openweathermap.org/img/w/10d.png" alt="" /></div>
+                <div className="bodoni black">{city.toUpperCase()}</div>
+                <div className="detailsTitle"><img src="http://openweathermap.org/img/w/04d.png" alt="" /></div>
                 <div className="detailsTitle"> <span>T</span>empera<span>t</span>ure 
                     <p>{temp}°C</p>
                 </div>

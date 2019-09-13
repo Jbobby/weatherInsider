@@ -6,12 +6,12 @@ import './navigation.style.scss';
 
 const Navigation = () => {
     return(
-        <nav className='navigation bg-white dt border-box pa3 ph5-ns'>
+        <nav className='navigation dt border-box pa3 ph5-ns'>
             <Logo />
-                <ul style={{}} className="fr">
-                    <li className="link dim" href="#"> Map </li>
-                    <li className="link dim" href="#"> About </li>
-                    <li className="link dim" href="#"> Contact Us </li>
+                <ul className="fr">
+                    <li className="dim"><a href="http://">Map</a></li>
+                    <li className="dim"><a href="http://">About</a></li>
+                    <li className="style dim"><a href="http://">Contact Us</a></li>
                 </ul>
         </nav>
     )
