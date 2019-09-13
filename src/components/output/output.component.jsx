@@ -4,22 +4,26 @@ import './output.style.scss';
 
 
 
-const Output = ({temp, humidity, description, icon}) => {
+const Output = ({temp, humidity, description, icon, city}) => {
+    let imageLink = "http://openweathermap.org/img/w/" + {icon} + ".png";
+    console.log(imageLink);
+    console.log(icon);
     return(
         <div className='section'>
             <div className="divstyle">
-                <h4 className="detailsTitle"> <span>T</span>empera<span>t</span>ure 
+                <div className="bodoni black">{city}</div>
+                <div className="detailsTitle"><img src="http://openweathermap.org/img/w/10d.png" alt="" /></div>
+                <div className="detailsTitle"> <span>T</span>empera<span>t</span>ure 
                     <p>{temp}°C</p>
-                </h4>
+                </div>
                 <hr />
-                <h4 className="detailsTitle"> Humidi<span>t</span>y
+                <div className="detailsTitle"> Humidi<span>t</span>y
                     <p>{humidity}%</p> 
-                </h4>
+                </div>
                 <hr />
-                <h4 className="detailsTitle"> Condi<span>t</span>ion
-                    <p>{description} hi</p> 
-                </h4>
-                <p className="detailsTitle"> {icon} </p>
+                <div className="detailsTitle"> Condi<span>t</span>ion
+                    <p>{description}</p> 
+                </div>
             </div>
         </div>
     )

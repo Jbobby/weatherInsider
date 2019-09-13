@@ -4,6 +4,7 @@ import Navigation from './components/navigation/navigation.component';
 import Output from './components/output/output.component';
 import architecture from '../src/architecture.jpg';
 import Searchbox from './components/searchbox/searchbox.component';
+import HowTo from './components/howto/howto.component'
 
 
 class App extends Component {
@@ -16,10 +17,9 @@ class App extends Component {
       temperature: '',
       humidity: '',
       description: '',
-      icon:'',
+      iconUrl:'',
     }
   }
-
 
     onInputChange = (event) => {
       this.setState({input: event.target.value});
@@ -34,12 +34,16 @@ componentDidMount() {
   fetch('http://api.openweathermap.org/data/2.5/weather?q=Lagos&APPID=155789547c677eeabf2690f539468ce0')
   .then(res => res.json())
   .then(data =>
+    {
+      console.log(data)
      this.setState({
          temperature: data.main.temp,
          humidity: data.main.humidity,
-         description: data.weather.main,
-         icon: data.weather.icon,
+         description: data.weather[0].main,
+         icon: data.weather[0].icon,
+         city: data.name,
      })
+    }
   )
 }
 
@@ -61,9 +65,11 @@ componentDidMount() {
                             description={this.state.description} 
                             icon={this.state.icon}
                             searchInput={this.state.searchField}  
+                            city={this.state.city}
                           />
                         
                   </div>
+                  <HowTo />
           
           </div>
     )

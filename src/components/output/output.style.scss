@@ -3,20 +3,28 @@
     display: flex;
     justify-content: center;
     margin-right: 60px;
-    padding-top: 50px;
+    padding-top: 10px;
 }
 span{
   color: blue;
 }
 
 .divstyle{
-  border: 4px solid black;
+  border: 4px solid rgb(120, 200, 247);
   display: inline-block;
-  width: 120px;
+  width: 140px;
   min-height: 200px;
+  margin-bottom: 10px;
 }
 
-.h4{
+.black{
+  font-size: 2em;
+  text-align: center;
+}
+
+.detailsTitle{
+  text-align: center;
+  margin-top: 0;
   font-weight: 700
 }
 
