@@ -24,7 +24,7 @@ const Section = () => {
                <div className="d_container">
                     <div className="firstbox">I have found ReactJs more interesting and problem-solving. <br />
                      Also consumed the Open weather map API... <br />
-                     <a id="link" href="http://openweathermap.com">Click to use the free API</a></div>
+                     <a id="link" href="http://openweathermap.com">Visit the website to learn more</a></div>
                     <div className="secondbox"><img style={{ height: 200 , width: 200}} src={continental} alt="OwnerPicture"/></div>
                </div>
         </div>

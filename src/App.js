@@ -11,13 +11,14 @@ class App extends Component {
   constructor() {
     super();
     this.state={
-      input: '',
-      city: '',
-      searchField: '',
-      temperature: '',
-      humidity: '',
-      description: '',
-      icon:'',
+      // input: '',
+      // city: '',
+      // searchField: '',
+      // temperature: '',
+      // humidity: '',
+      // description: '',
+      // icon:'',
+      details: [],
     }
   }
 
@@ -35,39 +36,37 @@ componentDidMount() {
   .then(res => res.json())
   .then(data =>
      this.setState({
-         temperature: data.main.temp,
-         humidity: data.main.humidity,
-         description: data.weather[0].main,
-         icon: data.weather[0].icon,
-         city: data.name,
+        //  temperature: data.main.temp,
+        //  humidity: data.main.humidity,
+        //  description: data.weather[0].main,
+        //  icon: data.weather[0].icon,
+        //  city: data.name,
+        details: data
      })
   )
 }
 
 
   render(){
+    const {temperature,humidity,description,iconUrl,searchField,city} = this.state;
+    // const mappedSearch = data.map
     return(
           <div className="app">
               <Navigation />
-
                   <div className="container" style={{backgroundImage: `url(${architecture})`, paddingTop: 120}}>
-
-                      <h1 className="tc">WEATHER INSIDER</h1>
-                        <p>Get accurate weather information of any city by filling the form below.</p>
-              <Searchbox onSubmit={this.onButtonSubmit} inputChange={this.onInputChange} />
-
-              <Output 
-                temp={this.state.temperature} 
-                humidity={this.state.humidity} 
-                description={this.state.description} 
-                icon={this.state.iconUrl}
-                searchInput={this.state.searchField}  
-                city={this.state.city}
-              />
-                        
+                      <h1 className="tc f2 calisto">WEATHER INSIDER</h1>
+                        <p className="">Get accurate weather information of any city by filling the form below.</p>
+                          <Searchbox onSubmit={this.onButtonSubmit} inputChange={this.onInputChange} />
+                            <Output 
+                              temp={temperature} 
+                              humidity={humidity} 
+                              description={description} 
+                              icon={iconUrl}
+                              searchInput={searchField}  
+                              city={city}
+                            />
                   </div>
               <Section />
-          
           </div>
     )
   }
