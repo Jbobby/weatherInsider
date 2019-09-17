@@ -5,9 +5,7 @@ import './output.style.scss';
 
 
 const Output = ({temp, humidity, description, icon, city}) => {
-    let imageLink = "http://openweathermap.org/img/w/" + {icon} + ".png";
-    console.log(imageLink);
-    console.log(icon);
+    // let imageLink = "http://openweathermap.org/img/w/" + {icon} + ".png";
     return(
         <div className='section'>
             <div className="divstyle">

@@ -6,19 +6,19 @@ import architecture from '../src/architecture.jpg';
 import Searchbox from './components/searchbox/searchbox.component';
 import Section from './components/section/section.component';
 
+// const API_KEY = '155789547c677eeabf2690f539468ce0';
 
 class App extends Component {
   constructor() {
     super();
     this.state={
-      // input: '',
-      // city: '',
-      // searchField: '',
-      // temperature: '',
-      // humidity: '',
-      // description: '',
-      // icon:'',
-      details: [],
+      input: '',
+      city: '',
+      searchField: '',
+      temperature: '',
+      humidity: '',
+      description: '',
+      icon:'',
     }
   }
 
@@ -36,12 +36,11 @@ componentDidMount() {
   .then(res => res.json())
   .then(data =>
      this.setState({
-        //  temperature: data.main.temp,
-        //  humidity: data.main.humidity,
-        //  description: data.weather[0].main,
-        //  icon: data.weather[0].icon,
-        //  city: data.name,
-        details: data
+         temperature: data.main.temp,
+         humidity: data.main.humidity,
+         description: data.weather[0].main,
+         icon: data.weather[0].icon,
+         city: data.name,
      })
   )
 }
@@ -49,12 +48,12 @@ componentDidMount() {
 
   render(){
     const {temperature,humidity,description,iconUrl,searchField,city} = this.state;
-    // const mappedSearch = data.map
+    
     return(
           <div className="app">
               <Navigation />
                   <div className="container" style={{backgroundImage: `url(${architecture})`, paddingTop: 120}}>
-                      <h1 className="tc f2 calisto">WEATHER INSIDER</h1>
+                      <h1 className="tc f2 calisto">What Is The Weather Like<span> ?</span></h1>
                         <p className="">Get accurate weather information of any city by filling the form below.</p>
                           <Searchbox onSubmit={this.onButtonSubmit} inputChange={this.onInputChange} />
                             <Output 
