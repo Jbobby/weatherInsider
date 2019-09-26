@@ -7,7 +7,7 @@ import Searchbox from './components/searchbox/searchbox.component';
 import Section from './components/section/section.component';
 
 
-const API_key = '155789547c677eeabf2690f539468ce0';
+const api_key = '155789547c677eeabf2690f539468ce0';
 
 class App extends Component {
   constructor() {
@@ -23,36 +23,13 @@ class App extends Component {
   }
 
 
-  //Fetch Data From The API
-
-  getWeather = async (city) => {
-  
-    try{
-      const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_key}&units=metric`);
-      const data = await response.json();
-      console.log(data);
-      
-        this.setState({
-            temperature: this.calCelsius(data.main.temp),
-            humidity: data.main.humidity,
-            condition: data.weather[0].main,
-            icon: data.weather[0].icon,
-            city: `${data.name}`,
-            description: data.weather[0].description,
-        })
-    }
-      catch(error){
-        alert(error + 'Check your internet connection');
-      }
-  }
-
   calCelsius(temp){
-    let cel = Math.floor(temp - 273.15);
+    let cel = Math.floor(temp);
     return cel;
   }
 
   onInputChange = (event) => {
-    this.setState({input: event.target.value});
+    this.setState({input: event.target.value.toUpperCase()});
   }
 
   onButtonSubmit = () => {
@@ -65,17 +42,44 @@ class App extends Component {
 		}
 	}   
 
-  componentDidMount() {
-    this.getWeather();
+
+  //Fetch Data From The API
+
+
+
+  getWeather = async () => {
+    const city = this.state.input;
+    try{
+      const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${api_key}&units=metric`, {method: 'GET'});
+      const data = await response.json();
+      console.log(`api call`);	
+      
+        this.setState({
+            temperature: this.calCelsius(data.main.temp),
+            humidity: data.main.humidity,
+            condition: data.weather[0].main,
+            icon: data.weather[0].icon,
+            city: data.name,
+            description: data.weather[0].description,
+        })
+    }
+      catch(error){
+       console.log(error + ' .Check your internet connection');
+      }
   }
 
+
+  componentDidMount() {
+    this.getWeather();
+    console.log('componentMount')
+  }
 
   render(){ 
     const {temperature, humidity, condition, name, icon} = this.state;
 
     let page;
     (this.state.input.length === 0) ?
-    page = <p>Enter the city name</p>:
+    page = <p></p>:
     page = <Output
           temp={temperature}
           humidity={humidity}
@@ -92,8 +96,8 @@ class App extends Component {
                 <h1 className="tc f2 calisto">What Is The Weather Like<span> ?</span></h1>
                   <p className="">Get accurate weather information of any city by filling the form below.</p>
                     <Searchbox 
-                      onSubmit={this.onButtonSubmit} 
-                      inputChange={this.onInputChange}
+                      onInputChange={this.onInputChange}
+                      onButtonSubmit={this.onButtonSubmit} 
                       />
 
                         {page}

@@ -4,7 +4,7 @@ import './output.style.scss';
 
 
 
-const Output = ({temp, humidity, description, city}) => {
+const Output = ({temp, humidity, condition, city}) => {
     // let imageLink = "http://openweathermap.org/img/w/" + {icon} + ".png";
     return(
         <div className='section'>
@@ -20,7 +20,7 @@ const Output = ({temp, humidity, description, city}) => {
                 </div>
                 <hr />
                 <div className="detailsTitle"> Condi<span>t</span>ion
-                    <p>{description}</p> 
+                    <p>{condition}</p> 
                 </div>
             </div>
         </div>

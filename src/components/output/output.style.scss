@@ -32,8 +32,8 @@ span{
     display: flex;
     justify-content: center;
     animation-duration: 3s;
-    animation-name: slidein;
-  }
+    // animation-name: slidein;
+}
   
   @keyframes slidein {
     from {
@@ -45,7 +45,7 @@ span{
       margin-left: 0%;
       width: 100%;
     }
-}
+  }
 
 p{
     text-align: center;
