@@ -12,6 +12,8 @@ const api_key = '155789547c677eeabf2690f539468ce0';
 class App extends Component {
   constructor() {
     super();
+
+    // Store values in states
     this.state={
       input: '',
       name: '',
@@ -19,6 +21,7 @@ class App extends Component {
       humidity: '',
       condition: '',
       icon:'',
+      search: '',
     }
   }
 
@@ -29,78 +32,70 @@ class App extends Component {
   }
 
   onInputChange = (event) => {
-    this.setState({input: event.target.value.toUpperCase()});
+    return this.setState({input: event.target.value});
   }
 
   onButtonSubmit = () => {
-    this.getWeather(this.state.input)
+    this.setState({search: this.state.input});
   }
 
-  onKeyPress = (event) => {
-		if(event.keyCode === 13 || event.charCode ===13) {
-      this.getWeather(this.state.input)
-		}
-	}   
+  // onKeyPress = (event) => {
+	// 	if(event.keyCode === 13 || event.charCode === 13) {
+  //     this.setState(this.state.input);
+	// 	}
+	// }   
 
-
-  //Fetch Data From The API
-
-
-
-  getWeather = async () => {
-    const city = this.state.input;
-    try{
-      const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${api_key}&units=metric`, {method: 'GET'});
-      const data = await response.json();
-      console.log(`api call`);	
-      
-        this.setState({
-            temperature: this.calCelsius(data.main.temp),
-            humidity: data.main.humidity,
-            condition: data.weather[0].main,
-            icon: data.weather[0].icon,
-            city: data.name,
-            description: data.weather[0].description,
-        })
-    }
-      catch(error){
-       console.log(error + ' .Check your internet connection');
-      }
+  async componentDidMount() {
+    const city = this.onInputChange();
+    console.log(city);
+    await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${api_key}&units=metric`)
+    .then(response => response.json())
+    .then(data => 
+      this.setState({
+        temperature: this.calCelsius(data.main.temp),
+        humidity: data.main.humidity,
+        condition: data.weather[0].main,
+        icon: data.weather[0].icon,
+        city: data.name,
+        description: data.weather[0].description,
+        }))
+        .catch(error => console.log(error))
   }
 
 
-  componentDidMount() {
-    this.getWeather();
-    console.log('componentMount')
-  }
-
+  //Render to The DOM
   render(){ 
-    const {temperature, humidity, condition, name, icon} = this.state;
+    const {input, temperature, humidity, condition, name, icon} = this.state;
 
     let page;
-    (this.state.input.length === 0) ?
-    page = <p></p>:
+    page = <p></p>
     page = <Output
           temp={temperature}
           humidity={humidity}
           condition={condition}
           city={name}
           icon={icon}
+          input={input}
+          userSearch={this.state.userSearch}
           />
 
+console.log('render');
+
     return(
-      
           <div className="app">
             <Navigation />
               <div className="container" style={{backgroundImage: `url(${architecture})`, paddingTop: 120}}>
-                <h1 className="tc f2 calisto">What Is The Weather Like<span> ?</span></h1>
+                <h1 className="tc f2 calisto">What Is The Weather Like<span>?</span></h1>
                   <p className="">Get accurate weather information of any city by filling the form below.</p>
                     <Searchbox 
                       onInputChange={this.onInputChange}
                       onButtonSubmit={this.onButtonSubmit} 
                       />
 
-                        {page}
+                      {/* <Output cityName={this.state.cityName} /> */}
+
+
+                      {page} 
   
               </div>
             <Section />
@@ -113,3 +108,36 @@ class App extends Component {
 export default App;
 
 
+
+
+
+
+
+//Fetch Data From The API
+  // getWeather = async () => {
+  //   const {userSearch} = this.state;
+  //   console.log('user');
+  //   try{
+  //     const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${userSearch}&APPID=${api_key}&units=metric`);
+  //     console.log('api call');
+  //     const data = await response.json();
+      
+  //       this.setState({
+  //           temperature: this.calCelsius(data.main.temp),
+  //           humidity: data.main.humidity,
+  //           condition: data.weather[0].main,
+  //           icon: data.weather[0].icon,
+  //           city: data.name,
+  //           description: data.weather[0].description,
+  //       })
+  //   }
+  //     catch(error){
+  //      console.log(error);
+  //     }
+  // }
+
+
+  // componentDidMount() {
+  //   this.getWeather();
+  //   console.log('componentMount')
+  // }

@@ -4,24 +4,25 @@ import './output.style.scss';
 
 
 
-const Output = ({temp, humidity, condition, city}) => {
+const Output = ({cityName, ...props}) => {
     // let imageLink = "http://openweathermap.org/img/w/" + {icon} + ".png";
     return(
         <div className='section'>
             <div className="divstyle">
-                <div className="black pb2">{city.toUpperCase()}</div>
-                {/* <img className="icon" src={`http://openweathermap.org/img/w/10d.png`} alt={'Weather Icon'}/> */}
-                <div className="detailsTitle"> <span>T</span>empera<span>t</span>ure 
-                    <p>{temp}&deg;</p>
-                </div>
-                <hr />
-                <div className="detailsTitle"> Humidi<span>t</span>y
-                    <p>{humidity}%</p> 
-                </div>
-                <hr />
-                <div className="detailsTitle"> Condi<span>t</span>ion
-                    <p>{condition}</p> 
-                </div>
+                {/* <div className="black pb2">{city.toUpperCase()}</div> */}
+                <div className="black pb2">{cityName}</div>
+                    {/* <img className="icon" src={`http://openweathermap.org/img/w/10d.png`} alt={'Weather Icon'}/> */}
+                        <div className="detailsTitle"> <span>T</span>empera<span>t</span>ure 
+                            <p>{props.temp}&deg;</p>
+                        </div>
+                            <hr />
+                                <div className="detailsTitle"> Humidi<span>t</span>y
+                                    <p>{props.humidity}%</p> 
+                                </div>
+                                    <hr />
+                                        <div className="detailsTitle"> Condi<span>t</span>ion
+                                            <p>{props.condition}</p> 
+                                        </div>
             </div>
         </div>
     )
