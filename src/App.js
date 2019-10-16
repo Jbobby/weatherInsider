@@ -32,7 +32,11 @@ class App extends Component {
   }
 
   onInputChange = (event) => {
-    return this.setState({input: event.target.value});
+    console.log( event)
+    if(event)
+     this.setState({
+       input: event.target.value
+    });
   }
 
   onButtonSubmit = () => {

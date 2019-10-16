@@ -17,7 +17,7 @@ const Output = ({cityName, ...props}) => {
                         </div>
                             <hr />
                                 <div className="detailsTitle"> Humidi<span>t</span>y
-                                    <p>{props.humidity}%</p> 
+                                    <p>{props.city}%</p> 
                                 </div>
                                     <hr />
                                         <div className="detailsTitle"> Condi<span>t</span>ion
